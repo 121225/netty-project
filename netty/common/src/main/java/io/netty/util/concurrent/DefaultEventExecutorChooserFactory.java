@@ -65,6 +65,7 @@ public final class DefaultEventExecutorChooserFactory implements EventExecutorCh
              * todo                                 &
              * todo   executor.lenth-1            1111
              * todo   result                      1010
+             * todo 由于&运算比求余运算性能高，所以分开处理：https://www.jianshu.com/p/f2ffff7ee3c9
              */
             return executors[idx.getAndIncrement() & executors.length - 1];
         }
