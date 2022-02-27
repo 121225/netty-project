@@ -522,6 +522,12 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
             }
         }
 
+        /**
+         * todo 注册到selector
+         * todo 执行之前初始化channel的时候添加到pipeline但是还没有执行的
+         * todo 传播Channel注册事件
+         * @param promise
+         */
         private void register0(ChannelPromise promise) {
             try {
                 // check if the channel is still open as it could be closed in the mean time when the register
