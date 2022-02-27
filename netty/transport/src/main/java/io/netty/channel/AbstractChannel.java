@@ -496,7 +496,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
             //
             // todo 当我们注册channel的时候就得确保给他专属它的thread,
             // todo 如果是新的连接到了,
-            if (eventLoop.inEventLoop()) {
+            if (eventLoop.inEventLoop()) {//todo 判断当前这条正在执行的线程是不是就是我们刚刚从group里面拿出来的线程A，如果是的话直接执行，不是的话需要提交到A线程的队列中执行
                 // todo 进入regist0()
                 register0(promise);
             } else {

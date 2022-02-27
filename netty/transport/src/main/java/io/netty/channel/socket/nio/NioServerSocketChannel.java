@@ -62,6 +62,7 @@ public class NioServerSocketChannel extends AbstractNioMessageChannel
              *  See <a href="https://github.com/netty/netty/issues/2308">#2308</a>.
              */
             //todo 不再使用 provider.open() 获取 ServerSocketChannel , 据说当一秒5000并发的时候,会出现可能出现阻塞, 性能下降1%
+            //todo 直接调用JDK中的NIO原生API，创建ServerSocketChannel
             return provider.openServerSocketChannel();
         } catch (IOException e) {
             throw new ChannelException(

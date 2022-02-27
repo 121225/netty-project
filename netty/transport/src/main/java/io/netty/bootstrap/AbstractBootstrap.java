@@ -314,12 +314,13 @@ public abstract class AbstractBootstrap<B extends AbstractBootstrap<B, C>, C ext
     }
 
     /**
-     * todo 特别重要!!!
+     * todo 特别重要!!! initAndRegister、doBind0
      * @param localAddress
      * @return
      */
     private ChannelFuture doBind(final SocketAddress localAddress) {
         // todo  初始化 和 注册  带 Future 字眼的表示异步!!!  它本身返回的就是一个ChannelFuture
+        // todo initAndRegister channel的初始化和注册到selector
         final ChannelFuture regFuture = initAndRegister();
 
         final Channel channel = regFuture.channel();
