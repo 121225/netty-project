@@ -496,7 +496,9 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
             //
             // todo 当我们注册channel的时候就得确保给他专属它的thread,
             // todo 如果是新的连接到了,
-            if (eventLoop.inEventLoop()) {//todo 判断当前这条正在执行的线程是不是就是我们刚刚从group里面拿出来的线程A，如果是的话直接执行，不是的话需要提交到A线程的队列中执行
+            // todo 判断当前这条正在执行的线程是不是就是我们刚刚从group里面拿出来的线程A，如果是的话直接执行，不是的话需要提交到A线程的队列中执行
+            // todo 此时由于当前线程是main()线程，肯定与eventLoop中的线程不相等，因此会通过eventLoop来异步执行register0()
+            if (eventLoop.inEventLoop()) {
                 // todo 进入regist0()
                 register0(promise);
             } else {
@@ -529,7 +531,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
                 }
                 boolean firstRegistration = neverRegistered;
                 // todo 进入这个方法doRegister()
-                // todo 它把系统创建的ServerSocketChannel 注册进了选择器
+                // todo 它把系统创建的ServerSocketChannel 注册进了选择器（多路复用器，selector）
                 doRegister();
                 neverRegistered = false;
                 registered = true;

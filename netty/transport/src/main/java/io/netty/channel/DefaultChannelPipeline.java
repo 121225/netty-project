@@ -693,6 +693,7 @@ public class DefaultChannelPipeline implements ChannelPipeline {
             // It's time to call the callbacks for the ChannelHandlers,
             // that were added before the registration was done.
             // todo 现在我们的channel已经注册在bossGroup中的eventLoop上了, 是时候回调执行那些在注册前添加的 handler了
+            // todo 只有在第一次注册的时候才会执行
             callHandlerAddedForAllHandlers();
         }
     }
@@ -1171,6 +1172,7 @@ public class DefaultChannelPipeline implements ChannelPipeline {
         // This must happen outside of the synchronized(...) block as otherwise handlerAdded(...) may be called while
         // holding the lock and so produce a deadlock if handlerAdded(...) will try to add another handler from outside
         // the EventLoop.
+        // todo pendingHandlerCallbackHead在之前pipeline addFirst,addLast的时候已经设置
         PendingHandlerCallback task = pendingHandlerCallbackHead;
         while (task != null) {
             task.execute();
