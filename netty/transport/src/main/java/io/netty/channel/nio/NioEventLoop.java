@@ -824,6 +824,7 @@ public final class NioEventLoop extends SingleThreadEventLoop {
                 // It might be pended until idle timeout if IdleStateHandler existed in pipeline.
                 // todo  判断任务队列中时候还有别的任务, 如果有任务的话, 进入代码块, 非阻塞的select() 并且 break; 跳出循环
                 //todo  通过cas 把线程安全的把 wakenU设置成true表示退出select()方法, 已进入时,我们设置oldWakenUp是false
+                // todo 队列中有任务或者还没有select过
                 if (hasTasks() && wakenUp.compareAndSet(false, true)) {
                     selector.selectNow();
                     selectCnt = 1;
