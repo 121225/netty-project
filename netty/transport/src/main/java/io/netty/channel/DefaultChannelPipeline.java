@@ -1341,6 +1341,7 @@ public class DefaultChannelPipeline implements ChannelPipeline {
         public void bind(
                 ChannelHandlerContext ctx, SocketAddress localAddress, ChannelPromise promise)
                 throws Exception {
+            // todo io.netty.channel.AbstractChannel.AbstractUnsafe.bind
             unsafe.bind(localAddress, promise);
         }
 

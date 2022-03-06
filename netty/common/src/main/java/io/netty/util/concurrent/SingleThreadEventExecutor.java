@@ -892,7 +892,7 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
                 boolean success = false;
                 updateLastExecutionTime();
                 try {
-                    // todo 实际启动线程, 到这里  NioEventLoop 就启动完成了
+                    // todo 实际启动线程, 到这里  NioEventLoop 就启动完成了，io.netty.channel.nio.NioEventLoop.run
                     SingleThreadEventExecutor.this.run();
                     success = true;
                 } catch (Throwable t) {

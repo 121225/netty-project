@@ -605,7 +605,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
             // todo 由于端口的绑定未完成，所以 wasActive是 false
 
             try {
-                // todo 绑定端口, 进去就是NIO原生JDK绑定端口的代码
+                // todo 绑定端口, 进去就是NIO原生JDK绑定端口的代码,NioServerSocketChannel
                 doBind(localAddress);
                 // todo 端口绑定完成  isActive（）是true
             } catch (Throwable t) {
@@ -842,7 +842,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
             }
 
             try {
-                // todo 进入
+                // todo 进入 io.netty.channel.nio.AbstractNioChannel.doBeginRead
                 doBeginRead();
             } catch (final Exception e) {
                 invokeLater(new Runnable() {

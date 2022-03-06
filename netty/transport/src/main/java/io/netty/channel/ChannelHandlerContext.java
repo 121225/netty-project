@@ -172,7 +172,7 @@ public interface ChannelHandlerContext extends AttributeMap, ChannelInboundInvok
      * The {@link ChannelHandler} that is bound this {@link ChannelHandlerContext}.
      */
     // todo 获取ChannelHandlerContent对应的处理器对象
-    ChannelHandler handler();
+    ChannelHandler  handler();
 
     /**
      * Return {@code true} if the {@link ChannelHandler} which belongs to this context was removed

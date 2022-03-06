@@ -450,6 +450,10 @@ public abstract class AbstractNioChannel extends AbstractChannel {
         final int interestOps = selectionKey.interestOps();
         // todo 如果是服务端, readInterestOp是创建服务端channel时设置的 op_accept
         // todo 如果是客户端的新连接,readInterestOp是创建客户端channel时设置的 op_read
+        //OP_READ = 1      00000001
+        //OP_WRITE = 4     00000100
+        //OP_CONNECT = 8   00001000
+        //OP_ACCEPT = 16   00010000
         if ((interestOps & readInterestOp) == 0) {
             // todo interestOps | readInterestOp两者进行或运算，原来是0事件 ， 现在又增加了一个事件， accept事件或者是read
             // todo 进而 从新注册到SelectionKey上面去。。。 0P_Accept 或者 OP_Read

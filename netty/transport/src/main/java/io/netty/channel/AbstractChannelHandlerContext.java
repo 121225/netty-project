@@ -218,7 +218,7 @@ abstract class AbstractChannelHandlerContext extends DefaultAttributeMap
     private void invokeChannelActive() {
         if (invokeHandler()) {
             try {
-                // todo 继续进去
+                // todo 继续进去 io.netty.channel.DefaultChannelPipeline.HeadContext.channelActive
                 ((ChannelInboundHandler) handler()).channelActive(this);
             } catch (Throwable t) {
                 notifyHandlerException(t);
@@ -509,7 +509,7 @@ abstract class AbstractChannelHandlerContext extends DefaultAttributeMap
     private void invokeBind(SocketAddress localAddress, ChannelPromise promise) {
         if (invokeHandler()) {
             try {
-                // todo 继续执行绑定方法
+                // todo 继续执行绑定方法，io.netty.channel.DefaultChannelPipeline.HeadContext.bind
                 ((ChannelOutboundHandler) handler()).bind(this, localAddress, promise);
             } catch (Throwable t) {
                 notifyOutboundHandlerException(t, promise);
